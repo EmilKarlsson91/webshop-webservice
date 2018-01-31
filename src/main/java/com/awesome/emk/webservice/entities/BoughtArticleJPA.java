@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="articles")
-public class ArticleJPA {
+@Table(name="bought_articles")
+public class BoughtArticleJPA {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,17 +37,21 @@ public class ArticleJPA {
 
 	@NotNull
 	@Column
-	private int stock;
+	private int quantity;
 
-	public ArticleJPA() {
+	@ManyToOne
+	@JoinColumn(name="orderid", referencedColumnName="orderid")
+	private OrderJPA orderJPA;
+
+	public BoughtArticleJPA() {
 	}
 
-	public ArticleJPA(String name, String description, String producer, float price, int stock) {
+	public BoughtArticleJPA(String name, String description, String producer, float price, int quantity) {
 		this.name = name;
 		this.description = description;
 		this.producer = producer;
 		this.price = price;
-		this.stock = stock;
+		this.quantity = quantity;
 	}
 
 	public String getName() {
@@ -82,15 +86,23 @@ public class ArticleJPA {
 		this.price = price;
 	}
 
-	public int getStock() {
-		return stock;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public Long getId() {
 		return id;
+	}
+
+	public OrderJPA getOrderJPA() {
+		return orderJPA;
+	}
+
+	public void setOrderJPA(OrderJPA orderJPA) {
+		this.orderJPA = orderJPA;
 	}
 }

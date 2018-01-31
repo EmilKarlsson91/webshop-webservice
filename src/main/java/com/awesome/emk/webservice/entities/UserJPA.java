@@ -6,8 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name="users")
@@ -18,36 +25,63 @@ public class UserJPA{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="userid")
 	private Long id;
-	
+
+	@NotNull
 	@Column(name="username")
-	private String userName;
+	private String username;
 	
+	@NotNull
 	@Column
 	private String lastName;
 	
+	@NotNull
 	@Column
 	private String password;
 	
+	@NotNull
 	@Column
 	private boolean enabled;
 	
-	@OneToOne(mappedBy="userJPA")
+	public boolean isEnabled() {
+		return enabled;
+	}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	public UserRoleJPA getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(UserRoleJPA userRole) {
+		this.userRole = userRole;
+	}
+
+	@OneToOne(mappedBy="userJPA", cascade = {CascadeType.ALL})
 	UserRoleJPA userRole;
+	
+	public List<OrderJPA> getOrders() {
+		return orders;
+	}
+	public void setOrders(List<OrderJPA> orders) {
+		this.orders = orders;
+	}
+
+	@OneToMany(mappedBy="userJPA", cascade = {CascadeType.ALL})
+	private List<OrderJPA> orders = new ArrayList<OrderJPA>();
 	
 	public UserJPA() {}
 	public UserJPA(String userName, String lastName, String password, boolean enabled) {
-		this.userName = userName;
+		this.username = userName;
 		this.lastName = lastName;
 		this.password = password;
 		this.enabled = enabled;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getLastName() {

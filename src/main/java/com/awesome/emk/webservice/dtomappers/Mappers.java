@@ -7,10 +7,10 @@ public class Mappers {
 	}
 	
 	public static UserMapper getUserMapper() {
-		return null;
+		return new UserMapperImpl();
 	}
 	
-	public static UserRoleMapper getUserRoleMapper() {
-		return null;
+	public static OrderMapper getOrderMapper() {
+		return new OrderMapperImpl();
 	}
 }

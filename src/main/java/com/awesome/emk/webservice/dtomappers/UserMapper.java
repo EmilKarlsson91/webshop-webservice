@@ -1,6 +1,9 @@
 package com.awesome.emk.webservice.dtomappers;
 
+import com.awesome.emk.apiclasses.UserDTO;
+import com.awesome.emk.webservice.entities.UserJPA;
+
 public interface UserMapper {
-//	ArticleJPA articleDTOToJPA(ArticleDTO articleDTO);
-//	ArticleDTO articleJPAToDTO(ArticleJPA articleJPA);
+	UserJPA userDTOToJPA(UserDTO userDTO);
+	UserDTO userJPAToDTO(UserJPA userJPA);
 }

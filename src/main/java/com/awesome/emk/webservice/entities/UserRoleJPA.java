@@ -1,5 +1,7 @@
 package com.awesome.emk.webservice.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="user_roles")
@@ -19,9 +22,10 @@ public class UserRoleJPA{
 	private Long id;
 
 	@OneToOne
-	@JoinColumn(name="username", referencedColumnName="username")
+	@JoinColumn(name="userid", referencedColumnName="userid")
 	private UserJPA userJPA;
 	
+	@NotNull
 	@Column
 	private String role;
 	
