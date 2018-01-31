@@ -8,4 +8,4 @@ Klona repot och ta bort utkommenteringen av text i WebserviceApplication.Java f√
 
 https://github.com/EmilKarlsson91/webshop-client
 
-https://github.com/EmilKarlsson91/Webshop-classes
+https://github.com/EmilKarlsson91/webshop-classes
